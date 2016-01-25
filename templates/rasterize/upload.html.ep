@@ -1,2 +1,22 @@
 % layout 'default';
-templates/rasterize/upload.html.ep
+<div class="container">
+  %= include 'layouts/menu',
+  <div class="row" style="margin-top:72px">
+    <div class="col-lg-offset-2 col-lg-8">
+      <form action="/r/upload"
+	    class="dropzone"
+	    id="dz" ></form>
+    </div>
+    <div class="col-lg-2"></div>
+  </div>
+</div>
+<script>
+$(function() {
+    Dropzone.options.dz = {
+	"success" : function(file, data) {
+	    console.log('done');
+	    window.location.replace(data);
+	}
+    };
+})
+</script>
