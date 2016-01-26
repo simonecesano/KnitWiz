@@ -1,4 +1,6 @@
 % layout 'default';
+<style>
+</style>
 <div class="container">
   %= include 'layouts/menu',
   <div class="row" style="margin-top:72px">
@@ -7,7 +9,21 @@
 	    class="dropzone"
 	    id="dz" ></form>
     </div>
-    <div class="col-lg-2"></div>
+    <div class="col-lg-offset-2 col-lg-8" id="instructions">
+      <h2>How to use this</h2>
+      Make sure that your file only contains the parts that you need to be knit:
+      <ul>
+	<li>no sewing lines</li>
+	<li>no separating lines between parts</li>
+	<li>no printed patterns or logos</li>
+	<li>nothing else that you don't want knit</li>
+      </ul>
+      Make sure you know
+      <ul>
+	<li>how big the knit pattern will be</li>
+	<li>what the loop density is (horizontal and vertical)</li>
+      </ul>
+    </div>
   </div>
 </div>
 <script>
@@ -18,5 +34,6 @@ $(function() {
 	    window.location.replace(data);
 	}
     };
+    $('.dropzone').addClass('jumbotron').css('background-color', 'lightgrey').css('border', 'none');
 })
 </script>

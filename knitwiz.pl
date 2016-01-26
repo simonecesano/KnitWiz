@@ -51,3 +51,5 @@ get '/r/:md5/finish' => sub {
 };
 
 app->start;
+
+__DATA__
