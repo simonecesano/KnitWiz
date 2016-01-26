@@ -26,12 +26,17 @@ post '/r/upload' => sub {
     app->log->info($file->filename);
     my $md5 = Digest::MD5->new;
     $md5->add($file->slurp);
-    $c->render(text => join '', '/r/', $md5->hexdigest, '/params');
+    $md5 = $md5->hexdigest;
+    $file->move_to('./temp/' . $md5 . '.pdf');
+    $c->render(text => join '', '/r/', $md5, '/params');
 };
 
 get '/r/:md5/params' => sub {
     my $c = shift;
-    $c->render(template => '/rasterize/params');
+    my $p = './temp/' . $md5 . '.pdf';
+    my @bbox = split /\s+/, [ grep { /\%\%BoundingBox:/ } split /\n|\r/, qx/gs -o nul -sDEVICE=bbox "$file" 2>&1 / ]->[0] =~ s/%%BoundingBox: //r;
+    app->log->info(join ', ', @bbox);
+    $c->render(template => '/rasterize/params', { bbox => \@bbox });
 };
 
 post '/r/:md5/params' => sub {
