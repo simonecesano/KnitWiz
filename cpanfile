@@ -19,3 +19,4 @@ requires "Mojolicious::Plugin::OAuth2";
 requires "CHI";
 requires "Path::Tiny";
 requires "System::Command";
+requires "Digest::MD5";
