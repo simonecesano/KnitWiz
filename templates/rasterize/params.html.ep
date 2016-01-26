@@ -1,0 +1,10 @@
+% layout 'default';
+<div class="container">
+  %= include 'layouts/menu',
+  <div class="row" style="margin-top:72px">
+    <div class="col-lg-offset-2 col-lg-8">
+      Lots of parameters here
+    </div>
+    <div class="col-lg-2"></div>
+  </div>
+</div>
