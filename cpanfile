@@ -20,3 +20,5 @@ requires "CHI";
 requires "Path::Tiny";
 requires "System::Command";
 requires "Digest::MD5";
+requires "Getopt::Long::Descriptive";
+requires "Text::Markdown";

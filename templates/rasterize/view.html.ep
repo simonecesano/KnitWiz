@@ -1,2 +1,9 @@
 % layout 'default';
-templates/rasterize/view.html.ep
+<div class="container">
+  %= include 'layouts/menu',
+  <div class="row" style="margin-top:72px">
+    <div class="col-lg-offset-2 col-lg-8">
+      <%== $identify %>
+    </div>
+  </div>
+</div>
