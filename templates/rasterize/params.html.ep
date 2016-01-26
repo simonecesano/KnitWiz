@@ -3,7 +3,39 @@
   %= include 'layouts/menu',
   <div class="row" style="margin-top:72px">
     <div class="col-lg-offset-2 col-lg-8">
-      Lots of parameters here
+      <form class="form-horizontal" method="POST">
+	<div class="form-group">
+	  <label for="width">Pattern width </label>
+	  <input type="text" class="form-control" id="width" name="width" placeholder="Width">
+	</div>
+	<div class="form-group">
+	  <label for="height"> and height </label>
+	  <input type="text" class="form-control" id="height" name="height" placeholder="Height">
+	</div>
+	<label class="radio-inline">
+	  <input type="radio" name="pattern_measure" id="m_inches" value="inches"> inches
+	</label>
+	<label class="radio-inline">
+	  <input type="radio" name="pattern_measure" id="m_cm" value="cm"> centimeters
+	</label>
+	<hr />
+	<div class="form-group">
+	  <label for="width">Loops density horizontal </label>
+	  <input type="text" class="form-control" id="loops_h" name="loops_h" placeholder="Horiz. density">
+	</div>
+	<div class="form-group">
+	  <label for="height"> and vertical </label>
+	  <input type="text" class="form-control" id="loops_v" name="loops_v" placeholder="Vertical density">
+	</div>
+	<label class="radio-inline">
+	  <input type="radio" name="loop_measure" id="l_inches" value="inches"> per inch
+	</label>
+	<label class="radio-inline">
+	  <input type="radio" name="loop_measure" id="l_cm" value="cm"> per centimeter
+	</label>
+	<hr />
+	<button type="submit" class="btn btn-default">Submit</button>
+      </form>
     </div>
     <div class="col-lg-2"></div>
   </div>

@@ -34,6 +34,12 @@ get '/r/:md5/params' => sub {
     $c->render(template => '/rasterize/params');
 };
 
+post '/r/:md5/params' => sub {
+    my $c = shift;
+    $c->render(json => $c->req->params);
+};
+
+
 get '/r/:md5/view' => sub {
     my $c = shift;
     $c->render(text => '/r/:project/view');
@@ -43,4 +49,5 @@ get '/r/:md5/finish' => sub {
     my $c = shift;
     $c->render(text => '/r/:project/finish');
 };
+
 app->start;
