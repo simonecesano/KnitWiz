@@ -6,18 +6,23 @@
       <form class="form-horizontal" method="POST">
 	<div class="form-group">
 	  <label for="width">Pattern width </label>
-	  <input type="text" class="form-control" id="width" name="width" placeholder="Width">
+	  <input type="text" class="form-control" id="width" name="width" placeholder="Width" value="<%= $pdf_w %>">
 	</div>
 	<div class="form-group">
 	  <label for="height"> and height </label>
-	  <input type="text" class="form-control" id="height" name="height" placeholder="Height">
+	  <input type="text" class="form-control" id="height" name="height" placeholder="Height" value="<%= $pdf_h %>">
 	</div>
+	<div class="form-group">
 	<label class="radio-inline">
 	  <input type="radio" name="pattern_measure" id="m_inches" value="inches"> inches
 	</label>
-	<label class="radio-inline">
-	  <input type="radio" name="pattern_measure" id="m_cm" value="cm"> centimeters
+	<label class="radio-inline" style="border-right:thin solid grey">
+	  <input type="radio" name="pattern_measure" id="m_cm" value="cm" > centimeters&emsp;
 	</label>
+	<label class="checkbox-inline">
+	  &emsp;<input type="checkbox" name="pattern_measure" id="m_cm" value="cm">keep aspect ratio
+	</label>
+	</div>
 	<hr />
 	<div class="form-group">
 	  <label for="width">Loops density horizontal </label>

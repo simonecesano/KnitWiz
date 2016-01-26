@@ -33,10 +33,16 @@ post '/r/upload' => sub {
 
 get '/r/:md5/params' => sub {
     my $c = shift;
-    my $p = './temp/' . $md5 . '.pdf';
+    my $md5 = $c->param('md5');
+    my $file = './temp/' . $md5 . '.pdf';
+    #------------------------------------------------
     my @bbox = split /\s+/, [ grep { /\%\%BoundingBox:/ } split /\n|\r/, qx/gs -o nul -sDEVICE=bbox "$file" 2>&1 / ]->[0] =~ s/%%BoundingBox: //r;
+    my $pdf_w = $bbox[2] - $bbox[0];
+    my $pdf_h = $bbox[3] - $bbox[1];
+    #------------------------------------------------
     app->log->info(join ', ', @bbox);
-    $c->render(template => '/rasterize/params', { bbox => \@bbox });
+    $c->stash(bbox => \@bbox, pdf_w => $pdf_w, pdf_h => $pdf_h );
+    $c->render(template => '/rasterize/params');
 };
 
 post '/r/:md5/params' => sub {
