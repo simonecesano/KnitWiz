@@ -3,7 +3,20 @@
   %= include 'layouts/menu',
   <div class="row" style="margin-top:72px">
     <div class="col-lg-offset-2 col-lg-8">
-      <%== $identify %>
+      <h1>Image data</h1>
+      <a href='/r/<%= $md5 %>.png'>download</a>
+      <pre>
+	<%= $identify %>
+      </pre>
     </div>
   </div>
 </div>
+<script>
+  $(function(){
+      if (document.cookie.indexOf("visited") >= 0) {
+      } else {
+	  setTimeout("location.href='/r/<%= $md5 %>.png'", 1000)
+	  document.cookie = "visited";
+      }
+  })
+</script>

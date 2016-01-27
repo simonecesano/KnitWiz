@@ -15,6 +15,7 @@ requires "Mojo::Pg";
 requires "Mojolicious::Plugin::Bootstrap3";
 requires 'Mojolicious::Plugin::AssetPack';
 requires "Mojolicious::Plugin::OAuth2";
+requires "Mojolicious::Plugin::RenderFile";
 
 requires "CHI";
 requires "Path::Tiny";

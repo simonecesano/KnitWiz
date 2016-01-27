@@ -7,6 +7,7 @@ use Text::MultiMarkdown 'markdown';
 
 # Documentation browser under "/perldoc"
 plugin 'PODRenderer';
+plugin 'RenderFile';
 
 # push @{$static->paths}, './temp';
 
@@ -76,26 +77,20 @@ post '/r/:md5/view' => sub {
     }
 
     my $id = qx/identify -verbose "$png"/;
-    $c->res->headers->content_type('text/plain');
-    $c->render(text => $id);
+    $c->stash(identify => $id);
+    $c->stash(md5 => $md5);
+    $c->render(template => '/rasterize/view');
 };
 
 get '/r/:md5/view' => sub {
     my $c = shift;
     my $md5 = $c->param('md5');
     my $png = './temp/' . $md5 . '.png';
-    
+
     my $id = qx/identify -verbose "$png"/;
-    for ($id) {
-	s/:\n/" => {\n/g;
-	s/: /" => "/g;
-	s/\n/",\n/mg;
-	s/^(.)/{\n$1/;
-	s/(.)$/$1\n}\n/;
-	s/\n(\s+)(.)/\n$1"$2/g;
-    }
-    $c->res->headers->content_type('text/plain');
-    $c->render(text => $id);
+    $c->stash(identify => $id);
+    $c->stash(md5 => $md5);
+    $c->render(template => '/rasterize/view');
 };    
 
 get '/r/:md5/image' => sub {
@@ -104,6 +99,12 @@ get '/r/:md5/image' => sub {
     my $static = Mojolicious::Static->new( paths => [ 'temp' ] );
     $static->serve($c, $md5 . '.png');
     $c->rendered;
+};
+
+get '/r/#md5' => sub {
+    my $c = shift;
+    my $md5 = $c->param('md5');
+    $c->render_file('filepath' => './temp/' . $md5, 'filename' => 'knit.png');
 };
 
 get '/r/:md5/finish' => sub {
